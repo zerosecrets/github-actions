@@ -1,0 +1,18 @@
+name: Sets zero secrets as ENV vars
+description: A GitHub action that fetch zero secrets and store them as ENV vars
+
+inputs:
+  zero-token:
+    required: true
+    description: Zero Token for your secrets
+  apis:
+    required: true
+    description: Array of secrets you want to expose
+
+outputs:
+  zero-secrets:
+    description: Commit hash of the latest release as found in the repo
+
+runs:
+  using: node16
+  main: dist/index.js
