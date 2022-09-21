@@ -20,7 +20,7 @@ try {
   core.setFailed(error.message ?? 'Looks like there is no `apis` input');
 }
 
-const fetchSecrets = ({token, apis}) => {
+const fetchSecrets = async ({token, apis}) => {
   return await zero({token, apis}).fetch()
 }
 
@@ -43,7 +43,11 @@ try {
   Expose every secret as ENV variables with `ZER_SECRET_` prefix
   thus: awesome_secret will be ZERO_SECRET_AWESOME_SECRET
 */
-apis.map(api => secrets[api]).forEach(secret => {
+apis.map(api => [secrets[api], api]).forEach(([secret, api]) => {
+  if(typeof secret === 'undefined') {
+    throw new Error(`Looks like there is no secret for ${api} API`)
+  }
+
   Object.entries(secret).forEach(([name, value]) => {
     try {
       core.exportVariable(`ZERO_SECRET_${name.toLocaleUpperCase()}`, value)
