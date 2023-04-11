@@ -8,8 +8,8 @@ dependencies:
     specifier: 0.34.0
     version: 0.34.0
   '@zerosecrets/zero':
-    specifier: 0.1.13
-    version: 0.1.13(graphql@16.5.0)
+    specifier: 0.1.14
+    version: 0.1.14(graphql@16.5.0)
   graphql:
     specifier: 16.5.0
     version: 16.5.0
@@ -42,8 +42,8 @@ packages:
     hasBin: true
     dev: false
 
-  /@zerosecrets/zero@0.1.13(graphql@16.5.0):
-    resolution: {integrity: sha512-G4r1zSgr6hiLqbPcHrQ1wMDEODKFK8WBYo03XDbO5tkFWl3m+MFTApCbTj6q+g5+GRRwOqbyhG8VyLKrv2UuSw==}
+  /@zerosecrets/zero@0.1.14(graphql@16.5.0):
+    resolution: {integrity: sha512-oHtSoL/oIn8q76eMo4ueKMm0chCxSbHhgowU5Prwz4bFvhFXr63PIsPgGKxM/xCiwtRuHAL3oa+roK/I3pgRCQ==}
     dependencies:
       graphql-request: 5.1.0(graphql@16.5.0)
     transitivePeerDependencies:

@@ -15,7 +15,7 @@
   "dependencies": {
     "@actions/core": "1.10.0",
     "@vercel/ncc": "0.34.0",
-    "@zerosecrets/zero": "0.1.13",
+    "@zerosecrets/zero": "0.1.14",
     "graphql": "16.5.0"
   }
 }
