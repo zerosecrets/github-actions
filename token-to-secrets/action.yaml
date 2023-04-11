@@ -7,7 +7,11 @@ inputs:
     description: Zero Token for your secrets
   apis:
     required: true
-    description: Array of secrets you want to expose
+    description: Secrets, without spaces and separated by commas, that you want to expose
+  caller-name:
+    required: false
+    description: The name who calls the secrets, for easy tracking in the dashboard, default "none"
+    default: "none"
 
 outputs:
   zero-secrets:

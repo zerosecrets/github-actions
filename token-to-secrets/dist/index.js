@@ -3081,19 +3081,29 @@ let apis
 
 try {
   // `apis` input defined in action metadata file
-  apis = core.getInput('apis').split(',').map(api => api.trim())
+  apis = core.getInput('apis').split(',').map(api => api.trim().toLowerCase())
 } catch (error) {
   core.setFailed(error.message ?? 'Looks like there is no `apis` input');
 }
 
-const fetchSecrets = async ({token, apis}) => {
-  return await zero({token, apis}).fetch()
+let callerName
+
+try {
+  // `callerName` input defined in action metadata file
+  callerName = core.getInput('callerName');
+}
+catch(error) {
+  core.setFailed(error.message ?? 'Looks like there is no `callerName` input');
+}
+
+const fetchSecrets = async ({token, apis, callerName}) => {
+  return await zero({token, pick: apis, callerName}).fetch()
 }
 
 let secrets
 
 try {
-  secrets = fetchSecrets({token: zeroToken, apis})
+  secrets = fetchSecrets({token: zeroToken, apis, callerName: callerName === "none" ? undefined : callerName})
 } catch(error) {
   core.setFailed(error.message ?? 'Failed to fetch zero secrets, check you provide right credentials');
 }

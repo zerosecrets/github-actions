@@ -8,7 +8,7 @@ steps:
     id: zero
     with:
       zero-token: ${{ secrets.ZERO_TOKEN }}
-      apis: aws-production, stripe-production
+      apis: aws-production,stripe-production
   - name: echo secrets
     run: |
       echo "${{ steps.zero.outputs.zero-secrets }}"

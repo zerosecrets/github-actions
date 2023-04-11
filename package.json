@@ -1,6 +1,6 @@
 {
   "name": "@zero/github-actions",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Use this action when you need to fetch the secrets from Zero to apply in GitHub workflow environment.",
   "scripts": {
     "build": "ncc build ./token-to-secrets/index.js --out ./token-to-secrets/dist --license LICENSE"
