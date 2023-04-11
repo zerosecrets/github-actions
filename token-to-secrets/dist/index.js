@@ -3090,7 +3090,7 @@ const main = async () => {
 
   try {
     // `callerName` input defined in action metadata file
-    callerName = core.getInput('callerName');
+    callerName = core.getInput('caller-name');
   } catch (error) {
     core.setFailed(error.message ?? 'Looks like there is no `callerName` input');
   }
