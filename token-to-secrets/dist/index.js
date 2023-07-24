@@ -1762,7 +1762,7 @@ exports.checkBypass = checkBypass;
 
 /***/ }),
 
-/***/ 78:
+/***/ 464:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
@@ -1945,7 +1945,7 @@ ${a.join(`
       }
     }
   }
-`;var wy="https://core.tryzero.com/v1/graphql",Ny=e=>{if(typeof e.token>"u"||e.token.length===0)throw new Error("Zero token should be non-empty string");let a=new b0.GraphQLClient(wy,{headers:{}});return{async fetch(){let i=await a.request(h0,e);if(i.errors)throw new Error(i.errors[0].message);return i.secrets.reduce((t,n)=>({...t,[n.name]:n.fields.reduce((r,p)=>({...r,[p.name]:p.value}),{})}),{})}}};0&&(0);
+`;var wy="https://core.tryzero.com/graphql",Ny=e=>{if(typeof e.token>"u"||e.token.length===0)throw new Error("Zero token should be non-empty string");let a=new b0.GraphQLClient(wy,{headers:{}});return{async fetch(){let i=await a.request(h0,e);if(i.errors)throw new Error(i.errors[0].message);return i.secrets.reduce((t,n)=>({...t,[n.name]:n.fields.reduce((r,p)=>({...r,[p.name]:p.value}),{})}),{})}}};0&&(0);
 /*! Bundled license information:
 
 mime-db/index.js:
@@ -3065,7 +3065,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(954);
-const zero = (__nccwpck_require__(78).zero)
+const zero = (__nccwpck_require__(464).zero)
 
 const main = async () => {
   let zeroToken
