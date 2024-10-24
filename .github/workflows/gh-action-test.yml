@@ -1,0 +1,42 @@
+name: gh-action-test
+on:
+  schedule:
+    - cron: 30 13 * * 1-5
+jobs:
+  gh-action-test:
+    name: gh-action-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: zerosecrets/github-actions/token-to-secrets@main
+        id: zero
+        with:
+          zero-token: ${{ secrets.ZERO_TOKEN }}
+          apis: aws-production,docker
+          caller-name: CI/CD
+      - name: echo secrets
+        run: |
+          echo "${{ steps.zero.outputs.zero-secrets }}"
+          env | grep ZERO_SECRET
+      - name: Compare secrets
+        run: |
+          ACTUAL_VALUE="${{ steps.zero.outputs.zero-secrets }}"
+          EXPECTED_VALUE='{docker:{docker_api_token:test-docker-token},aws-production:{access_key_id:test-acess-key-id}}'
+
+          if [ "$ACTUAL_VALUE" = "$EXPECTED_VALUE" ]; then
+            echo "Secrets match!"
+          else
+            echo "Secrets do not match!"
+            echo "Actual value: $ACTUAL_VALUE"
+            exit 1
+          fi
+      - name: report-status-to-slack
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          fields: workflow
+          status: ${{ job.status }}
+          author_name: GH action tests
